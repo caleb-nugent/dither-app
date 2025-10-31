@@ -1,0 +1,11 @@
+{
+  "name": "dither-forge",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Zero-dependency web app for image dithering.",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "serve": "python3 -m http.server 8080"
+  },
+  "license": "MIT"
+}

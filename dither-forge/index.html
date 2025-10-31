@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dither Forge</title>
+  <link rel="stylesheet" href="./styles.css">
+  <meta name="description" content="In-browser image dithering (Floyd–Steinberg, Atkinson, Ordered Bayer, Threshold) — no uploads, all local.">
+</head>
+<body>
+  <header>
+    <h1>Dither Forge</h1>
+    <p>Create classic dithering from any image. Runs 100% in your browser.</p>
+    <a class="github" id="gh-link" href="#" target="_blank" rel="noopener">GitHub</a>
+  </header>
+
+  <main>
+    <section class="controls">
+      <div class="control">
+        <label for="file">Source image</label>
+        <input type="file" id="file" accept="image/*">
+      </div>
+
+      <div class="control">
+        <label for="algo">Algorithm</label>
+        <select id="algo">
+          <option value="none">None (Posterize)</option>
+          <option value="threshold">Threshold</option>
+          <option value="bayer4">Ordered (Bayer 4×4)</option>
+          <option value="bayer8">Ordered (Bayer 8×8)</option>
+          <option value="fs">Floyd–Steinberg</option>
+          <option value="atkinson">Atkinson</option>
+          <option value="halftone">Halftone (dots)</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label for="levels">Levels (grayscale)</label>
+        <input type="range" id="levels" min="2" max="16" step="1" value="4">
+        <span id="levelsVal">4</span>
+      </div>
+
+      <div class="control">
+        <label for="scale">Scale (preview)</label>
+        <input type="range" id="scale" min="1" max="8" step="1" value="2">
+        <span id="scaleVal">2×</span>
+      </div>
+
+      <details>
+        <summary>Advanced</summary>
+        <div class="advanced">
+          <div class="control">
+            <label for="palette">Custom palette (#hex, comma separated)</label>
+            <input type="text" id="palette" placeholder="#000,#777,#bbb,#fff">
+          </div>
+          <div class="control inline">
+            <label for="contrast">Contrast</label>
+            <input type="range" id="contrast" min="-100" max="100" value="0">
+            <span id="contrastVal">0</span>
+          </div>
+          <div class="control inline">
+            <label for="brightness">Brightness</label>
+            <input type="range" id="brightness" min="-100" max="100" value="0">
+            <span id="brightnessVal">0</span>
+          </div>
+          <div class="control inline">
+            <label for="gamma">Gamma</label>
+            <input type="range" id="gamma" min="10" max="300" value="100">
+            <span id="gammaVal">1.00</span>
+          </div>
+          <div class="control inline">
+            <label for="invert">Invert</label>
+            <input type="checkbox" id="invert">
+          </div>
+        </div>
+      </details>
+
+      <div class="buttons">
+        <button id="apply">Apply</button>
+        <button id="download">Download PNG</button>
+      </div>
+    </section>
+
+    <section class="canvases">
+      <div class="canvas-wrap">
+        <h3>Source</h3>
+        <canvas id="src"></canvas>
+      </div>
+      <div class="canvas-wrap">
+        <h3>Result</h3>
+        <canvas id="out"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built with <code>CanvasRenderingContext2D</code> — no libraries, no uploads.</p>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
